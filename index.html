@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amelia & Noah | Wedding Invitation</title>
+    <meta
+      name="description"
+      content="A luxury single-page wedding invitation experience with RSVP, countdown, details, gallery, and map."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="loader" class="fixed inset-0 z-[80] grid place-items-center bg-[#fbf6ec]">
+      <div class="loader-mark">
+        <span></span>
+      </div>
+    </div>
+
+    <div class="petal-layer" aria-hidden="true">
+      <span style="--x: 9%; --d: 13s; --delay: 0s"></span>
+      <span style="--x: 27%; --d: 16s; --delay: 2s"></span>
+      <span style="--x: 51%; --d: 12s; --delay: 1s"></span>
+      <span style="--x: 75%; --d: 18s; --delay: 3s"></span>
+      <span style="--x: 91%; --d: 15s; --delay: 0.5s"></span>
+    </div>
+
+    <main>
+      <section id="opening" class="opening-screen min-h-screen">
+        <div class="opening-backdrop"></div>
+        <div class="envelope-scene">
+          <div class="envelope" aria-hidden="true">
+            <div class="envelope-flap"></div>
+            <div class="envelope-card">
+              <p>Amelia & Noah</p>
+            </div>
+            <div class="envelope-front"></div>
+          </div>
+          <button id="openInvite" class="gold-button mt-10" type="button">Open Invitation</button>
+        </div>
+      </section>
+
+      <section id="hero" class="hero-section min-h-screen">
+        <div class="hero-image parallax"></div>
+        <div class="hero-overlay"></div>
+        <nav class="fixed top-0 left-0 right-0 z-40 px-5 py-4 opacity-0" id="topNav">
+          <div class="mx-auto flex max-w-6xl items-center justify-between border-b border-white/30 pb-3 text-white">
+            <a href="#hero" class="script text-3xl">A & N</a>
+            <div class="hidden items-center gap-7 text-xs uppercase tracking-[0.28em] md:flex">
+              <a href="#details">Details</a>
+              <a href="#countdown">Countdown</a>
+              <a href="#gallery">Gallery</a>
+              <a href="#rsvp">RSVP</a>
+            </div>
+            <button id="musicToggle" class="icon-button" type="button" aria-label="Play music">
+              <span id="musicIcon">♪</span>
+            </button>
+          </div>
+        </nav>
+
+        <div class="hero-content reveal">
+          <p class="eyebrow">Together with their families</p>
+          <h1><span>Amelia</span><small>&</small><span>Noah</span></h1>
+          <p class="date-line">Saturday, 21 September 2026</p>
+          <a href="#details" class="gold-button">View Details</a>
+        </div>
+      </section>
+
+      <section class="intro-section section-pad">
+        <div class="mx-auto max-w-3xl text-center reveal">
+          <p class="script mb-4 text-5xl text-[#a27a33] md:text-6xl">With love and joy</p>
+          <h2 class="section-title">You are invited to celebrate a beautiful beginning.</h2>
+          <p class="section-copy">
+            Join us for an intimate evening of vows, dinner, music, and memories beneath a soft garden sky.
+          </p>
+        </div>
+      </section>
+
+      <section id="details" class="section-pad details-band">
+        <div class="mx-auto grid max-w-6xl gap-6 px-5 md:grid-cols-3">
+          <article class="detail-card reveal">
+            <span>Ceremony</span>
+            <h3>4:30 PM</h3>
+            <p>Garden vows at The Glasshouse Estate.</p>
+          </article>
+          <article class="detail-card reveal">
+            <span>Reception</span>
+            <h3>6:00 PM</h3>
+            <p>Dinner, music, and candlelit celebration.</p>
+          </article>
+          <article class="detail-card reveal">
+            <span>Dress Code</span>
+            <h3>Formal Garden</h3>
+            <p>Ivory, champagne, sage, or dark green accents.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="countdown" class="section-pad countdown-section">
+        <div class="mx-auto max-w-5xl px-5 text-center">
+          <p class="eyebrow reveal">The celebration begins in</p>
+          <div class="countdown-grid reveal" aria-label="Wedding countdown">
+            <div><strong id="days">00</strong><span>Days</span></div>
+            <div><strong id="hours">00</strong><span>Hours</span></div>
+            <div><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div><strong id="seconds">00</strong><span>Seconds</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section-pad gallery-section">
+        <div class="mx-auto max-w-6xl px-5">
+          <div class="mb-12 max-w-2xl reveal">
+            <p class="eyebrow">Our Story</p>
+            <h2 class="section-title text-left">A quiet yes became a lifetime.</h2>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-large reveal">
+              <img src="assets/wedding-hero.png" alt="Luxury wedding invitation floral flat lay" />
+            </figure>
+            <div class="story-panel reveal">
+              <p>
+                From a first conversation over coffee to a proposal wrapped in candlelight, every chapter has led us
+                here.
+              </p>
+              <p class="script">Forever starts with you beside us.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="venue" class="section-pad venue-section">
+        <div class="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+          <div class="reveal">
+            <p class="eyebrow">Venue</p>
+            <h2 class="section-title text-left">The Glasshouse Estate</h2>
+            <p class="section-copy text-left">
+              17 Rosewood Lane, Beverly Hills, CA. Guest arrival begins at 4:00 PM.
+            </p>
+          </div>
+          <div class="map-frame reveal">
+            <iframe
+              title="Venue map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-118.421%2C34.061%2C-118.397%2C34.078&layer=mapnik&marker=34.0695%2C-118.409"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="section-pad rsvp-section">
+        <div class="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[0.95fr_1.05fr] md:items-start">
+          <div class="reveal">
+            <p class="eyebrow">Kindly reply</p>
+            <h2 class="section-title text-left">RSVP by 1 September 2026.</h2>
+            <p class="section-copy text-left">
+              Let us know if you will join us. Your response is saved on this device for this demo invitation.
+            </p>
+          </div>
+          <form id="rsvpForm" class="rsvp-form reveal">
+            <label>
+              Full name
+              <input name="name" type="text" placeholder="Your name" required />
+            </label>
+            <label>
+              Attendance
+              <select name="attendance" required>
+                <option value="">Select one</option>
+                <option value="yes">Joyfully accepts</option>
+                <option value="no">Regretfully declines</option>
+              </select>
+            </label>
+            <label>
+              Guests
+              <input name="guests" type="number" min="0" max="4" value="1" />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="4" placeholder="Leave a note"></textarea>
+            </label>
+            <button class="gold-button w-full" type="submit">Send RSVP</button>
+            <p id="rsvpMessage" class="form-message" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="thank-you section-pad">
+        <div class="mx-auto max-w-3xl px-5 text-center reveal">
+          <p class="script mb-4 text-6xl text-[#a27a33]">Thank you</p>
+          <h2 class="section-title">Your presence is the gift we will remember.</h2>
+          <p class="section-copy">We cannot wait to celebrate with you.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
