@@ -4,10 +4,37 @@ const opening = document.querySelector("#opening");
 const envelope = document.querySelector(".envelope");
 const openInvite = document.querySelector("#openInvite");
 const nav = document.querySelector("#topNav");
+const weddingMusic = document.querySelector("#weddingMusic");
 const musicToggle = document.querySelector("#musicToggle");
 const musicIcon = document.querySelector("#musicIcon");
 const rsvpForm = document.querySelector("#rsvpForm");
 const rsvpMessage = document.querySelector("#rsvpMessage");
+
+let musicPlaying = false;
+
+function updateMusicButton() {
+  musicIcon.textContent = musicPlaying ? "Pause" : "Play";
+  musicToggle.setAttribute("aria-label", musicPlaying ? "Pause music" : "Play music");
+}
+
+async function playMusic() {
+  weddingMusic.volume = 0.55;
+
+  try {
+    await weddingMusic.play();
+    musicPlaying = true;
+  } catch (error) {
+    musicPlaying = false;
+  }
+
+  updateMusicButton();
+}
+
+function pauseMusic() {
+  weddingMusic.pause();
+  musicPlaying = false;
+  updateMusicButton();
+}
 
 window.addEventListener("load", () => {
   gsap.to(loader, {
@@ -17,6 +44,8 @@ window.addEventListener("load", () => {
     ease: "power2.out",
     onComplete: () => loader.remove(),
   });
+
+  playMusic();
 });
 
 const lenis = new Lenis({
@@ -58,6 +87,7 @@ gsap.to(".parallax", {
 });
 
 openInvite.addEventListener("click", () => {
+  playMusic();
   envelope.classList.add("open");
   gsap.to(openInvite, { autoAlpha: 0, y: 12, duration: 0.35 });
   gsap.to(opening, {
@@ -91,51 +121,11 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-let audioContext;
-let musicNodes = [];
-let musicPlaying = false;
-
-function startMusic() {
-  audioContext = audioContext || new AudioContext();
-  const master = audioContext.createGain();
-  master.gain.value = 0.035;
-  master.connect(audioContext.destination);
-
-  const notes = [261.63, 329.63, 392, 493.88];
-  musicNodes = notes.map((frequency, index) => {
-    const oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    oscillator.type = index % 2 ? "triangle" : "sine";
-    oscillator.frequency.value = frequency;
-    gain.gain.value = index === 0 ? 0.7 : 0.35;
-    oscillator.connect(gain);
-    gain.connect(master);
-    oscillator.start();
-    return { oscillator, gain };
-  });
-
-  musicPlaying = true;
-  musicIcon.textContent = "Ⅱ";
-  musicToggle.setAttribute("aria-label", "Pause music");
-}
-
-function stopMusic() {
-  musicNodes.forEach(({ oscillator, gain }) => {
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.25);
-    oscillator.stop(audioContext.currentTime + 0.3);
-  });
-  musicNodes = [];
-  musicPlaying = false;
-  musicIcon.textContent = "♪";
-  musicToggle.setAttribute("aria-label", "Play music");
-}
-
 musicToggle.addEventListener("click", async () => {
   if (!musicPlaying) {
-    startMusic();
-    if (audioContext.state === "suspended") await audioContext.resume();
+    await playMusic();
   } else {
-    stopMusic();
+    pauseMusic();
   }
 });
 
@@ -143,9 +133,10 @@ rsvpForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(rsvpForm).entries());
   localStorage.setItem("wedding-rsvp", JSON.stringify({ ...data, sentAt: new Date().toISOString() }));
-  rsvpMessage.textContent = data.attendance === "yes"
-    ? "Thank you. Your RSVP has been received with joy."
-    : "Thank you for letting us know. You will be missed.";
+  rsvpMessage.textContent =
+    data.attendance === "yes"
+      ? "Thank you. Your RSVP has been received with joy."
+      : "Thank you for letting us know. You will be missed.";
   rsvpForm.reset();
 });
 
@@ -153,3 +144,5 @@ const savedRsvp = localStorage.getItem("wedding-rsvp");
 if (savedRsvp) {
   rsvpMessage.textContent = "Your RSVP is already saved on this device.";
 }
+
+updateMusicButton();
