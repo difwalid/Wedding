@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <audio id="weddingMusic" src="audio/weddings.mp3" preload="auto" autoplay loop></audio>
+
     <div id="loader" class="fixed inset-0 z-[80] grid place-items-center bg-[#fbf6ec]">
       <div class="loader-mark">
         <span></span>
@@ -35,6 +37,12 @@
     <main>
       <section id="opening" class="opening-screen min-h-screen">
         <div class="opening-backdrop"></div>
+        <div class="opening-ornaments" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="envelope-scene">
           <div class="envelope" aria-hidden="true">
             <div class="envelope-flap"></div>
@@ -66,6 +74,12 @@
         </nav>
 
         <div class="hero-content reveal">
+          <div class="hero-ornaments" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <p class="eyebrow">Together with their families</p>
           <h1><span>Amelia</span><small>&</small><span>Noah</span></h1>
           <p class="date-line">Saturday, 21 September 2026</p>
